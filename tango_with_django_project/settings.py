@@ -18,9 +18,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Path for templates to make dynamic
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 
-# Path for static media files
+# Path for static files (e.g site images)
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
+# Path for media files (e.g profile pictures)
+MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -69,6 +71,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+				'django.template.context_processors.media',
             ],
         },
     },
@@ -127,3 +130,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [STATIC_DIR, ]
+
+# Media files
+
+MEDIA_ROOT = MEDIA_DIR # where to look for media files
+MEDIA_URL = '/media/' # what URL to serve media files from
