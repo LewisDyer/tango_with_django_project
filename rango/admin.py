@@ -7,11 +7,13 @@ class PageInline(admin.StackedInline):
 	extra = 3
 
 class CategoryAdmin(admin.ModelAdmin):
-	fieldsets = [(None,      {'fields':['name']}),
+	fieldsets = [(None,      {'fields':['name', 'slug']}),
 	             ('Traffic info', {'fields': ['views', 'likes']}),
 				 ]
 				 
 	inlines = [PageInline]
+	
+	prepopulated_fields = {'slug':('name',)}
 
 admin.site.register(Category, CategoryAdmin)
 	
