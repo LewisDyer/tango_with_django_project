@@ -5,21 +5,25 @@
 {% endblock %}
 
 {% block body_block %}
-	<h1>Add a Category</h1>
-		<div>
-			<form id="category_form" method="post" action="/rango/add_category/">
-				{% csrf_token %}
-				{% for hidden in form.hidden_fields %}
-					{{ hidden }}
-				{% endfor %}
-				{% for field in form.visible_fields %}
-					{{ field.errors }}
-					{{ field.help_text }}
-					{{ field }}
-				{% endfor %}
-				<input type="submit" name="submit" value="Create Category" />
-			</form>
-		</div>
+	{% if user.is_authenticated %}
+		<h1>Add a Category</h1>
+			<div>
+				<form id="category_form" method="post" action="/rango/add_category/">
+					{% csrf_token %}
+					{% for hidden in form.hidden_fields %}
+						{{ hidden }}
+					{% endfor %}
+					{% for field in form.visible_fields %}
+						{{ field.errors }}
+						{{ field.help_text }}
+						{{ field }}
+					{% endfor %}
+					<input type="submit" name="submit" value="Create Category" />
+				</form>
+			</div>
+	{% else %}
+		<strong>Only logged in users are able to add categories.</strong>
+	{% endif %}
 {% endblock %}
 
 <!--<!DOCTYPE html>
